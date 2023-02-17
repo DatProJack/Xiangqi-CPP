@@ -438,7 +438,7 @@ class Board {
         }
 
         //we need minimax to get the best val of a certain position
-        int minimax(char player, int depth, vector<vector<string>> board) {
+        int minimax(char player, int depth, vector<vector<string>>& board) {// length error idk why
             if(depth == 0) {//fix up the turn order and checks
                 return evalposition(board);
             }
