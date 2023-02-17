@@ -423,38 +423,84 @@ class Board {
             }
             return ans;
         }
-        
-        void aimove() {//red wants to maximize position score, black wants to minimize.
-            int bestmove[4] = {0, 0, 0, 0};
-            int bestpos = 10000;
 
-            string og1, og2;
+        int evalposition(vector<vector<string>>& board) {
+            int ans = 0;
+            for(auto &i : board) {
+                for(auto &j : i) {
+                    int multiplier = j[0] == 'r' ? 1 : -1;
+                    if(j != "  ") {
+                        ans += multiplier * worth[j[1]];
+                    }
+                }
+            }
+            return ans;
+        }
+
+        //we need minimax to get the best val of a certain position
+        int minimax(char player, int depth, vector<vector<string>> board) {
+            if(depth == 0) {//fix up the turn order and checks
+                return evalposition(board);
+            }
+            if(player == 'b') {
+                int lowest = 10000;
+                for(auto v : allmoves(board, 'b')) {// {x1, y1, x2, y2}
+                    string og1 = board[v[0]][v[1]];
+                    string og2 = board[v[2]][v[3]];
+                    board[v[2]][v[3]] = og1;
+                    board[v[0]][v[1]] = "  ";
+                    lowest = min(lowest, minimax('r', depth - 1, board));
+                    board[v[0]][v[1]] = og1;
+                    board[v[2]][v[3]] = og2;
+                }
+                return lowest;
+            }
+            else if(player == 'r') {
+                int highest = -10000;
+                for(auto v : allmoves(board, 'r')) {// {x1, y1, x2, y2}
+                    string og1 = board[v[0]][v[1]];//its gonna get rly messy w turns too. 
+                    string og2 = board[v[2]][v[3]];
+                    board[v[2]][v[3]] = og1;
+                    board[v[0]][v[1]] = "  ";
+                    highest = max(highest, minimax('b', depth - 1, board));
+                    board[v[0]][v[1]] = og1;
+                    board[v[2]][v[3]] = og2;
+                }
+                return highest;
+            }
+            return -1;
+        }
+
+        vector<vector<int>> allmoves(vector<vector<string>>& board, char player) {
+            vector<vector<int>> toReturn;
             for(int x = 0; x <= 9; x++) {
                 for(int y = 0; y <=8; y++) {
-                    if(board[x][y][0] == 'b') {//for this piece, generate all possible moves and get the eval for each
-                        for(auto p : getMoves(x, y)) {
-                            og1 = board[x][y];
-                            og2 = board[p.first][p.second];
-                            board[p.first][p.second] = board[x][y];
-                            board[x][y] = "  ";
-                            int temp = evalposition();
-                            if(temp < bestpos) {
-                                bestpos = temp;
-                                bestmove[0] = x;
-                                bestmove[1] = y;
-                                bestmove[2] = p.first;
-                                bestmove[3] = p.second;
-                            }
-                            board[x][y] = og1;
-                            board[p.first][p.second] = og2;
+                    if(board[x][y][0] == player) {//for this piece, generate all possible moves and get the eval for each
+                        for(auto p : getMoves(x, y)) {//doesnt check for checks
+                            toReturn.push_back(vector<int>{x, y, p.first, p.second});
                         }
                     }
                 }
             }
-            move(bestmove[0], bestmove[1], bestmove[2], bestmove[3]);
-            //black to move!
-            //find best move!
-            //test: for every single position, evaluate them, and pick the best
+            return toReturn;
+        }
+
+        void aimove() {
+            vector<int> moves;
+            int lowest = 10000;
+            for(auto v : allmoves(board, 'b')) {
+                string og1 = board[v[0]][v[1]];
+                string og2 = board[v[2]][v[3]];
+                board[v[2]][v[3]] = og1;
+                board[v[0]][v[1]] = "  ";
+                int temp = minimax('r', 3, board);
+                if(temp < lowest) {
+                    moves = v;
+                }
+                board[v[0]][v[1]] = og1;
+                board[v[2]][v[3]] = og2;
+            }
+            move(moves[0], moves[1], moves[2], moves[3]);
         }
 };
 
@@ -478,9 +524,6 @@ int main() {
             }
         }
         game.printBoard();
-
-        int a;
-        cin >> a;
         game.aimove();
         game.printBoard();
     }
