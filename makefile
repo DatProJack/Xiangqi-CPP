@@ -2,16 +2,23 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++11
 .PHONY: clean
 
-SOURCE_FILES = main.cpp Board.cpp TranspositionTable.cpp ZobristHash.cpp
-OBJECT_FILES = $(SOURCE_FILES:.cpp=.o)#Takes source files and replaces the .cpp with .o
+SOURCE_DIR = src
+INCLUDE_DIR = includes
+BUILD_DIR = bin
+
+SOURCE_FILES = $(wildcard $(SOURCE_DIR)/*.cpp)
+OBJECT_FILES = $(patsubst $(SOURCE_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCE_FILES))
 
 EXECUTABLE = xiangqi.exe
 
 $(EXECUTABLE): $(OBJECT_FILES)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -I $(INCLUDE_DIR) -c $< -o $@
+
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
 
 clean:
-	rm -force $(OBJECT_FILES) $(EXECUTABLE)
+	rm -rf $(BUILD_DIR) $(EXECUTABLE)
