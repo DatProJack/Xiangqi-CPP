@@ -1,10 +1,10 @@
-## AI Chinese Chess
+# AI Chinese Chess
 Console based Xiangqi aka Chinese chess, built from scratch in C++.
 The AI player is implemented using alpha beta pruning on a game tree, and a Zobrist Hashing based transposition table for better efficiency (avoids recalculating positions).
-# Try it out!
+## Try it out!
 1. Download xiangqi.exe
 2. Run xiangqi.exe
-# Demo
+## Demo
 Player move
 <img src="https://github.com/DatProJack/chinese-chess/assets/32620988/bb4b79e5-223a-4400-a995-a734267488b7" width="250" height="250">
 AI move
