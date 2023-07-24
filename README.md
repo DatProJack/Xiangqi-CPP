@@ -6,7 +6,7 @@ The AI player is implemented using alpha beta pruning on a game tree, and a Zobr
 2. Run xiangqi.exe
 ## Demo
 # Player move
-<img src="https://github.com/DatProJack/chinese-chess/raw/main/assets/32620988/bb4b79e5-223a-4400-a995-a734267488b7" alt="Your Image" width="250" height="250">
+<img src="https://github.com/DatProJack/chinese-chess/assets/32620988/bb4b79e5-223a-4400-a995-a734267488b7" width="250" height="250">
 
 ![](https://github.com/DatProJack/chinese-chess/assets/32620988/bb4b79e5-223a-4400-a995-a734267488b7)
 # AI move
