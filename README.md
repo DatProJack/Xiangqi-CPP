@@ -12,4 +12,4 @@ The AI player is implemented using alpha beta pruning on a game tree, and a Zobr
 <img src="https://github.com/DatProJack/chinese-chess/assets/32620988/f34e7130-974e-4982-b163-8f24f7412c9d" width="250" height="250">
 
 ### Invalid move
-<img src="https://github.com/DatProJack/chinese-chess/assets/32620988/3184aaa4-8833-4d03-94a0-1806eb8e9db1" width="250" height="250">
+<img src="https://github.com/DatProJack/chinese-chess/assets/32620988/1b68d92d-48dd-483e-acfc-92668225e7d0" width="250" height="250">
