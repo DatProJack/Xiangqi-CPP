@@ -41,7 +41,7 @@ void Board::printBoard() {
             if(y == 0) cout << x << "  ";
             else {
                 string j = board[x][y-1];
-                color = j[0] == 'r' ? 31 : 30;
+                color = j[0] == 'r' ? 31 : 36;
                 cout << "\033[" << color << "m " << j[1] << " \033[m";
             }
         }
