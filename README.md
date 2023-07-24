@@ -7,9 +7,7 @@ The AI player is implemented using alpha beta pruning on a game tree, and a Zobr
 ## Demo
 # Player move
 <img src="https://github.com/DatProJack/chinese-chess/assets/32620988/bb4b79e5-223a-4400-a995-a734267488b7" width="250" height="250">
-
-![](https://github.com/DatProJack/chinese-chess/assets/32620988/bb4b79e5-223a-4400-a995-a734267488b7)
 # AI move
-![](https://github.com/DatProJack/chinese-chess/assets/32620988/f34e7130-974e-4982-b163-8f24f7412c9d)
+<img src="https://github.com/DatProJack/chinese-chess/assets/32620988/f34e7130-974e-4982-b163-8f24f7412c9d" width="250" height="250">
 # Invalid move
-![](https://github.com/DatProJack/chinese-chess/assets/32620988/3184aaa4-8833-4d03-94a0-1806eb8e9db1)
+<img src="https://github.com/DatProJack/chinese-chess/assets/32620988/3184aaa4-8833-4d03-94a0-1806eb8e9db1" width="250" height="250">
