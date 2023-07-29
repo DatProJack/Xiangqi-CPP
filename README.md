@@ -1,6 +1,6 @@
 # AI Chinese Chess
-Contributers: Alex Yang
-Console based Xiangqi aka Chinese chess, built from scratch in **C++**.
+Contributers: Alex Yang \n
+Console based Xiangqi aka Chinese chess, built from scratch in **C++**. \n
 The AI player is implemented using **alpha beta pruning** on a **game tree**, and a **Zobrist Hashing** based **transposition table** for better efficiency (avoids recalculating positions).
 ## Try it out!
 1. Download xiangqi.exe
